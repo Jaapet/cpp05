@@ -6,11 +6,12 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:59:32 by ndesprez          #+#    #+#             */
-/*   Updated: 2024/02/09 15:39:09 by ndesprez         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:54:39 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat():_name("null"),_grade(150){}
 
@@ -66,6 +67,20 @@ void    Bureaucrat::decGrade()
     this->_grade++;
     if (this->_grade > 150)
         throw (Bureaucrat::GradeTooLowException());
+}
+
+void    Bureaucrat::signForm(Form &f) const
+{
+    try
+    {
+        f.beSigned(*this);
+        if (f.getSigned())
+            std::cout << *this << " signed " << f << std::endl;
+    }
+    catch (std::exception &e)
+    {
+        std::cout << *this << " couldn't sign " << f << " because " << e.what() << std::endl;
+    }
 }
 
 std::ostream	&operator<<(std::ostream &str, Bureaucrat const &instance)

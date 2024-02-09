@@ -6,14 +6,15 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:59:22 by ndesprez          #+#    #+#             */
-/*   Updated: 2024/02/09 12:41:02 by ndesprez         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:54:43 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_H
-# define BUREAUCRAT_H
+#pragma once
 
 #include <iostream>
+
+class Form;
 
 class Bureaucrat
 {
@@ -44,8 +45,8 @@ public:
 
     void    incGrade();
     void    decGrade();
+
+    void    signForm(Form &f) const;
 };
 
 std::ostream	&operator<<(std::ostream &str, Bureaucrat const &instance);
-
-#endif
